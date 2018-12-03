@@ -1,0 +1,22 @@
+{
+  "name": "node-test",
+  "main": "app.js",
+  "author": "Maksim Arzamastsev <arzamax@gmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "start": "nodemon --exec babel-node server/app.js",
+    "build": "rm -rf ./build && babel server --out-dir build --copy-files",
+    "test": "mocha server/**/*.test.js --require @babel/register",
+    "server": "node build/app.js"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.1.5",
+    "@babel/core": "^7.1.6",
+    "@babel/node": "^7.0.0",
+    "@babel/preset-env": "^7.1.6",
+    "@babel/register": "^7.0.0",
+    "chai": "^4.2.0",
+    "mocha": "^5.2.0",
+    "nodemon": "^1.18.7"
+  }
+}
