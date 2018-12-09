@@ -46,6 +46,7 @@ export default class DirWatcher extends EventEmitter {
 
   checkHasFileRemovedOrRenamed = fileNames => {
     for (const key of this._list.keys()) {
+
       if (!fileNames.includes(key)) {
         this.emit('dirwatcher:removed', key);
         this._list.delete(key);

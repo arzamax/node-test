@@ -24,7 +24,7 @@ export default class Importer {
     const data = await csvtojson().fromFile(path.join(this._path, CSVFileName));
     const JSONFileName = getJSONFileName(CSVFileName);
 
-    fs.writeFile(path.join(this._target, JSONFileName), JSON.stringify(data), (err) => {
+    fs.writeFile(path.join(this._target, JSONFileName), JSON.stringify(data), err => {
       if (err) {
         console.log(`error: ${err.message}`);
       }
