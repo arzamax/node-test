@@ -6,12 +6,12 @@ import DirWatcher from './dirwatcher';
 
 const getJSONFileName = fileName => `${path.parse(fileName).name}.json`;
 
-export default class Importer {
+export default class Importer extends DirWatcher {
 
-  constructor(path, target) {
+  constructor(path, target, delay) {
+    super(path, delay);
     this._path = path;
     this._target = target;
-    this._dirwatcher = new DirWatcher(path, 2000);
   }
 
   /**
@@ -48,22 +48,22 @@ export default class Importer {
   };
 
   addListeners() {
-    this._dirwatcher.on('dirwatcher:changed', this.convertCSVtoJSON);
-    this._dirwatcher.on('dirwatcher:removed', this.removeJSONByFileName);
+    this.on('dirwatcher:changed', this.convertCSVtoJSON);
+    this.on('dirwatcher:removed', this.removeJSONByFileName);
   }
 
   removeListeners() {
-    this._dirwatcher.removeListener('dirwatcher:changed', this.convertCSVtoJSON);
-    this._dirwatcher.removeListener('dirwatcher:removed', this.removeJSONByFileName);
+    this.removeListener('dirwatcher:changed', this.convertCSVtoJSON);
+    this.removeListener('dirwatcher:removed', this.removeJSONByFileName);
   }
 
   start() {
     this.addListeners();
-    this._dirwatcher.watch();
+    this.watch();
   }
 
   stop() {
     this.removeListeners();
-    this._dirwatcher.stopWatch();
+    this.stopWatch();
   }
 }
