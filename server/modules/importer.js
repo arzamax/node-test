@@ -10,7 +10,6 @@ export default class Importer extends DirWatcher {
 
   constructor(path, target, delay) {
     super(path, delay);
-    this._path = path;
     this._target = target;
   }
 
@@ -21,7 +20,7 @@ export default class Importer extends DirWatcher {
    */
 
   convertCSVtoJSON = async CSVFileName => {
-    const data = await csvtojson().fromFile(path.join(this._path, CSVFileName));
+    const data = await csvtojson().fromFile(path.join(this.path, CSVFileName));
     const JSONFileName = getJSONFileName(CSVFileName);
 
     fs.writeFile(path.join(this._target, JSONFileName), JSON.stringify(data), err => {

@@ -7,7 +7,7 @@ export default class DirWatcher extends EventEmitter {
 
   constructor(path, delay) {
     super();
-    this._path = path;
+    this.path = path;
     this._delay = delay || 2000;
     this._list = new Map();
     this._timer = null;
@@ -20,7 +20,7 @@ export default class DirWatcher extends EventEmitter {
    */
 
   checkHasFileModified = fileName => {
-    fs.stat(path.join(this._path, fileName), (err, data) => {
+    fs.stat(path.join(this.path, fileName), (err, data) => {
 
       if (err) {
         console.log(`error: ${err.message}`);
@@ -61,7 +61,7 @@ export default class DirWatcher extends EventEmitter {
    */
 
   processDirectory = () => {
-    fs.readdir(this._path, (err, fileNames) => {
+    fs.readdir(this.path, (err, fileNames) => {
 
       if (err) {
         console.log(`error: ${err.message}`);
