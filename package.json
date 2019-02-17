@@ -9,7 +9,7 @@
     "test": "mocha server/**/*.test.js --require @babel/register",
     "server": "node build/app.js",
     "streams": "nodemon --exec babel-node --ignore server/data server/utils/streams -- -a convertToFile --file ./server/data/csv/sample1.csv",
-    "start:http-server": "nodemon --exec babel-node server/http-servers/echo-server.js"
+    "start:http-server": "nodemon --exec babel-node server/http-servers/html-server.js"
   },
   "devDependencies": {
     "@babel/cli": "^7.1.5",
